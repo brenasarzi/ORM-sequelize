@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     ativo: DataTypes.BOOLEAN,
     email: DataTypes.STRING,
     role: DataTypes.STRING
-  }, {
+  }, 
+  {
     sequelize,
     modelName: 'Pessoas',
   });
