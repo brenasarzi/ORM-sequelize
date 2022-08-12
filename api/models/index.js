@@ -1,3 +1,6 @@
+// é o arquivo que gerencia todos os modelos da pasta models
+// é através dele que o Sequelize conecta os modelos ao banco de dados de acordo com o ambiente
+// (durante o projeto estamos trabalhando com o ambiente 'development', de desenvolvimento.
 'use strict';
 
 const fs = require('fs');

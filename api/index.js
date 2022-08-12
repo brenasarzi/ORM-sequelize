@@ -1,15 +1,12 @@
+// é o ponto de entrada da aplicação onde iniciamos o servidor e chamamos a biblioteca Express
+// para gerenciar as rotas API
 const express = require ('express')
-const bodyParser = require ('body-parser')
+const routes = require('./routes')
+
 const app = express()
+const port = 3000
 
-app.use(bodyParser.json())
-
-const port = 8080
-
-app.get('/teste', (req, res)=> res
-    .status(200)
-    .send({mensagem: 'Boas vindas á API'
-}))
+routes(app)
 
 app.listen(port, () => console.log(`servidor está rodando na porta ${port}`))
 
