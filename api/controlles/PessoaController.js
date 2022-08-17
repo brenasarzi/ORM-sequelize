@@ -1,4 +1,5 @@
 const database = require('../models')
+const pessoas = require('../models/pessoas')
 
 class PessoaController {
     static async pegaPessoasAtivas(req, res){
@@ -137,6 +138,18 @@ class PessoaController {
             return res.status(500).json(error.message)
         }
     }
+    static async pegaMatriculas(req, res){
+        const { estudanteId } = req.params
+        try {
+            const pessoa = await database.Pessoas.findOne({
+                where: { id: Number( estudanteId ) }
+            })
+            const matriculas = await pessoa.getAulasMatriculadas()
+            return res.status(200).json(matriculas)
+        } catch (error){
+            return res.status(500).json(error.message)
+        }
+    }
     
     static async restauraMatricula(req, res) {
         const { estudanteId, matriculaId } = req.params
@@ -148,6 +161,23 @@ class PessoaController {
             }
           })
           return res.status(200).json({ mensagem: `id ${id} restaurado`})
+        } catch (error) {
+          return res.status(500).json(error.message)
+        }
+      }
+
+  
+      static async pegaMatriculasPorTurma(req, res) {
+        const { turmaId } = req.params
+        try {
+          const todasAsMatriculas = await database.Matriculas
+            .findAndCountAll({
+              where: {
+                turma_id: Number(turmaId),
+                status: 'confirmado'
+              }
+            })
+          return res.status(200).json(todasAsMatriculas)
         } catch (error) {
           return res.status(500).json(error.message)
         }
