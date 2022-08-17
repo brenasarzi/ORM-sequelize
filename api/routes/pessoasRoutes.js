@@ -16,6 +16,8 @@ router.put('/pessoas/:estudanteId/matricula/:matriculaId',
 PessoaController.atualizarMatricula)
 router.delete('/pessoas/:estudanteId/matricula/:matriculaId', 
 PessoaController.apagarMatricula)
+router.post('/pessoas/:id/restaura', PessoaController.restauraPessoa)
+router.post('/pessoas/:estudanteId/matricula/:matriculaId/restaura', PessoaController.restauraMatricula)
 
 
 module.exports = router
