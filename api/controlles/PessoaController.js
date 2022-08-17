@@ -2,17 +2,26 @@ const { NUMERIC } = require('sequelize')
 const database = require('../models')
 
 class PessoaController {
+    static async pegaPessoasAtivas(req, res){
+        try{
+            // findAll() é um métedo sequelize que irá substiuir select do sql
+            const pessoasAtivas = await database.Pessoas.findAll()
+            return res.status(200).json(pessoasAtivas)
+        } catch (error){
+            return res.status(500).json(error.messege)
+        }
+    
+    }
     static async pegaTodasAsPessoas(req, res){
         try{
             // findAll() é um métedo sequelize que irá substiuir select do sql
-            const todasAsPessoas = await database.Pessoas.findAll()
+            const todasAsPessoas = await database.Pessoas.scope('todos').findAll()
             return res.status(200).json(todasAsPessoas)
         } catch (error){
             return res.status(500).json(error.messege)
         }
     
     }
-
     static async pegaUmaPessoa(req, res) {
         const { id } = req.params
         try{
