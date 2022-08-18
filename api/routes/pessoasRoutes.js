@@ -7,6 +7,7 @@ router
 .get('/pessoas', PessoaController.pegaPessoasAtivas)
 .get('/pessoas/todos', PessoaController.pegaTodasAsPessoas)
 .get('/pessoas/:id', PessoaController.pegaUmaPessoa)
+.get('/pessoas/matricula/lotada', PessoaController.pegaTurmaLotada)
 .get('/pessoas/:estudanteId/matricula', PessoaController.pegaMatriculas)
 .get('/pessoas/matricula/:turmaId/confirmadas', PessoaController.pegaMatriculasPorTurma)
 .post('/pessoas', PessoaController.criarPessoa)
@@ -23,6 +24,7 @@ PessoaController.atualizarMatricula)
 PessoaController.apagarMatricula)
 .post('/pessoas/:estudanteId/matricula/:matriculaId/restaura', 
 PessoaController.restauraMatricula)
+.post('/pessoas/:estudanteId/cancela', PessoaController.cancelaPessoa)
 
 
 module.exports = router
